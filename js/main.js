@@ -6,7 +6,6 @@ function randomInt(from, to) {
   return Math.ceil(Math.random() * (to - from) + from);
 }
 
-
 function randomFloat(from, to, decimals) {
   let number;
   if (from > to) {
@@ -17,6 +16,3 @@ function randomFloat(from, to, decimals) {
   }
   return Math.ceil(number) / Math.pow(10, decimals);
 }
-
-
-
