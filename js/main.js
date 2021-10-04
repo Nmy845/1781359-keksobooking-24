@@ -16,3 +16,6 @@ function randomFloat(from, to, decimals) {
   }
   return Math.ceil(number) / Math.pow(10, decimals);
 }
+
+randomInt(1, 412);
+randomFloat(1.2, 1.9);
