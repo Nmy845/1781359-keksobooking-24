@@ -18,4 +18,4 @@ function randomFloat(from, to, decimals) {
 }
 
 randomInt(1, 412);
-randomFloat(1.2, 1.9);
+randomFloat(1.1, 1.2, 10);
