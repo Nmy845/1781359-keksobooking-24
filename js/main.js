@@ -27,13 +27,18 @@ function randomFloat(from, to, decimals) {
 randomInt(1, 10);
 randomFloat(1.1, 1.2, 10);
 
+const MIN_LAT = 35.65000;
+const MAX_LAT = 35.70000;
+
+const MIN_LNG = 139.70000;
+const MAX_LNG = 139.80000;
+
 const OFFER_TITLE = ['Купить Квартиру', 'Купить комнату', 'Купить и сразу продать', 'Продам гараж'];
 
 const OFFER_TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 
-const OFFER_CHECKIN = ['12:00', '13:00', '14:00'];
+const OFFER_TIMES = ['12:00', '13:00', '14:00'];
 
-const OFFER_CHECKOUT = ['12:00', '13:00', '14:00'];
 
 const OFFER_FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 
@@ -59,8 +64,8 @@ function generateObject() {
   let avatarId = randomInt(1, 10);
   avatarId = (avatarId < 10) ? `0${avatarId}` : avatarId;
 
-  const lng = randomFloat(139.70000, 139.80000, 5);
-  const lat = randomFloat(35.65000, 35.70000, 5);
+  const lng = randomFloat(MIN_LNG, MAX_LNG, 5);
+  const lat = randomFloat(MIN_LAT, MAX_LAT, 5);
   shuffle(OFFER_FEATURES);
   shuffle(OFFER_PHOTOS);
   return {
@@ -74,8 +79,8 @@ function generateObject() {
       type: OFFER_TYPE[randomInt(0, OFFER_TYPE.length - 1)],
       rooms: randomInt(1, 6),
       guests: randomInt(1, 4),
-      checkin: OFFER_CHECKIN[randomInt(0, OFFER_CHECKIN.length - 1)],
-      checkout: OFFER_CHECKOUT[randomInt(0, OFFER_CHECKOUT.length - 1)],
+      checkin: OFFER_CHECKIN[randomInt(0, OFFER_TIMES.length - 1)],
+      checkout: OFFER_CHECKOUT[randomInt(0, OFFER_TIMES.length - 1)],
       features: OFFER_FEATURES.slice(0, randomInt(1, OFFER_FEATURES.length)),
       description: OFFER_DESCRIPTION[randomInt(0, OFFER_DESCRIPTION.length - 1)],
       photos: OFFER_PHOTOS.slice(0, randomInt(1, OFFER_PHOTOS.length)),
@@ -87,4 +92,13 @@ function generateObject() {
   };
 }
 
-generateObject();
+
+const objects = [];
+
+function arrayObjects (){
+  for(let index=0; index <10; index++){
+    objects.push (generateObject());
+  }
+}
+
+arrayObjects();
