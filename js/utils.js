@@ -1,3 +1,4 @@
+export {randomInt, randomFloat, shuffle};
 function randomInt(from, to) {
   if (from < 0 || to < 0) {
     return 'Параметры диапазона должны быть неотрицательными';
@@ -27,6 +28,4 @@ function randomFloat(from, to, decimals) {
       const jIndex = Math.floor(Math.random() * (iIndex + 1));
       [array[iIndex], array[jIndex]] = [array[jIndex], array[iIndex]];
     }
-  }
-
-  export {randomInt, randomFloat, shuffle};
+}
