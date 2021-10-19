@@ -1,6 +1,6 @@
-import {MIN_LAT, MAX_LAT, MIN_LNG, MAX_LNG, OFFER_TITLE, OFFER_TYPE, OFFER_TIMES, OFFER_FEATURES, OFFER_DESCRIPTION, OFFER_PHOTOS} from './data.js';
-import {randomInt, randomFloat, shuffle} from './utils.js';
-
+import { MIN_LAT, MAX_LAT, MIN_LNG, MAX_LNG, OFFER_TITLE, OFFER_TYPE, OFFER_TIMES, OFFER_FEATURES, OFFER_DESCRIPTION, OFFER_PHOTOS } from './data.js';
+import { randomInt, randomFloat, shuffle } from './utils.js';
+import { generateCards } from './cards.js';
 
 function generateObject() {
   let avatarId = randomInt(1, 10);
@@ -37,10 +37,17 @@ function generateObject() {
 
 const objects = [];
 
-function arrayObjects (){
-  for(let index=0; index <10; index++){
-    objects.push (generateObject());
+function arrayObjects() {
+  for (let index = 0; index < 10; index++) {
+    objects.push(generateObject());
   }
 }
 
 arrayObjects();
+
+
+var generatedCards = generateCards(objects);
+
+document.getElementById('map-canvas').appendChild(generatedCards[0]);
+
+
