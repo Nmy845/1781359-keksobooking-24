@@ -46,7 +46,7 @@ function arrayObjects() {
 arrayObjects();
 
 
-var generatedCards = generateCards(objects);
+let generatedCards = generateCards(objects);
 
 document.getElementById('map-canvas').appendChild(generatedCards[0]);
 

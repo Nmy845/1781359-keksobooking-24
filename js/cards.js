@@ -110,7 +110,7 @@ function generateCard (offer,author){
 
 
 function hideEmpty (field,element){
-  if (field == '' || field == undefined) {
+  if (field ==='' || field === undefined) {
     element.style.display = 'none';
   }
 
