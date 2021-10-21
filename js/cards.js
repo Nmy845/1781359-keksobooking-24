@@ -53,7 +53,6 @@ function generateCard (offer,author){
   }
   cardArticle.appendChild(cardType);
 
-
   const cardCapacity = document.createElement('p');
   cardCapacity.classList.add('popup__text','popup__text--capacity');
   cardCapacity.textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
@@ -73,14 +72,12 @@ function generateCard (offer,author){
     const cardFeature = document.createElement('li');
     cardFeature.classList.add('popup__feature',`popup__feature--${offer.features[i]}`);
     cardFeatures.appendChild(cardFeature);
-
   }
 
   const cardDescription = document.createElement('p');
   cardDescription.classList.add('popup_description');
   cardDescription.textContent = offer.description;
   cardArticle.appendChild(cardDescription);
-
 
   const cardPhotos = document.createElement('div');
   cardPhotos.classList.add('popup_photos');
@@ -103,8 +100,6 @@ function generateCard (offer,author){
   hideEmpty(offer.features,cardFeatures);
   hideEmpty(offer.description,cardDescription);
   hideEmpty(offer.price,cardPhotos);
-
-
   return card;
 }
 
@@ -113,10 +108,7 @@ function hideEmpty (field,element){
   if (field ==='' || field === undefined) {
     element.style.display = 'none';
   }
-
-
 }
-
 
 function generateCards(objects){
   const generatedCards = [];
@@ -125,7 +117,6 @@ function generateCards(objects){
     generatedCards.push(card);
   });
   return generatedCards;
-
 }
 
 
