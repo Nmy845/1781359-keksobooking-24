@@ -1,17 +1,22 @@
+
+
+function hideEmpty (field,element){
+  if (field ==='' || field === undefined) {
+	  element.style.display = 'none';
+  }
+}
+
 function generateCard (offer,author){
-
-  const card = document.createElement('div');
-  card.classList.add('card');
-
   const cardArticle = document.createElement('article');
   cardArticle.classList.add('popup');
-  card.appendChild(cardArticle);
 
+  const imgWidth = 70;
+  const imgHeigth =70;
   const cardImg = document.createElement('img');
   cardImg.classList.add('popup__avatar');
   cardImg.setAttribute('src',author.avatar);
-  cardImg.setAttribute('width','70');
-  cardImg.setAttribute('heigth','70');
+  cardImg.setAttribute('width',imgWidth);
+  cardImg.setAttribute('heigth',imgHeigth);
   cardImg.setAttribute('alt','Аватар пользователя');
   cardArticle.appendChild(cardImg);
 
@@ -66,7 +71,6 @@ function generateCard (offer,author){
   cardArticle.appendChild(cardFeatures);
 
   for (let i=0;i<offer.features.length;i++){
-
     const cardFeature = document.createElement('li');
     cardFeature.classList.add('popup__feature',`popup__feature--${offer.features[i]}`);
     cardFeatures.appendChild(cardFeature);
@@ -77,12 +81,14 @@ function generateCard (offer,author){
   cardDescription.textContent = offer.description;
   cardArticle.appendChild(cardDescription);
 
-  const cardPhotos = document.createElement('div');
+  const cardWidth = 45;
+  const cardHeight = 40;
+  const cardPhotos = document.createElement('img');
   cardPhotos.classList.add('popup_photos');
   for(let i=0;i < offer.photos.length;i++){
     cardPhotos.setAttribute('src',offer.photos[i]);
-    cardPhotos.setAttribute('width','45');
-    cardPhotos.setAttribute('height','40');
+    cardPhotos.setAttribute('width',cardWidth);
+    cardPhotos.setAttribute('height',cardHeight);
     cardPhotos.setAttribute('alt','Фотография жилья');
     cardDescription.appendChild(cardPhotos);
   }
@@ -98,14 +104,8 @@ function generateCard (offer,author){
   hideEmpty(offer.features,cardFeatures);
   hideEmpty(offer.description,cardDescription);
   hideEmpty(offer.price,cardPhotos);
-  return card;
-}
 
-
-function hideEmpty (field,element){
-  if (field ==='' || field === undefined) {
-    element.style.display = 'none';
-  }
+  return cardArticle;
 }
 
 function generateCards(objects){
