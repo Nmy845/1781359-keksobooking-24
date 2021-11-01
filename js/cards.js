@@ -1,5 +1,3 @@
-export{generateCards};
-
 function generateCard (offer,author){
 
   const card = document.createElement('div');
@@ -119,4 +117,4 @@ function generateCards(objects){
   return generatedCards;
 }
 
-
+export{generateCards};
