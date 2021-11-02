@@ -1,8 +1,8 @@
-export{generateCards};
+
 
 function hideEmpty (field,element){
   if (field ==='' || field === undefined) {
-    element.style.display = 'none';
+	  element.style.display = 'none';
   }
 }
 
@@ -83,7 +83,7 @@ function generateCard (offer,author){
 
   const cardWidth = 45;
   const cardHeight = 40;
-  const cardPhotos = document.createElement('div');
+  const cardPhotos = document.createElement('img');
   cardPhotos.classList.add('popup_photos');
   for(let i=0;i < offer.photos.length;i++){
     cardPhotos.setAttribute('src',offer.photos[i]);
@@ -117,4 +117,4 @@ function generateCards(objects){
   return generatedCards;
 }
 
-
+export{generateCards};
