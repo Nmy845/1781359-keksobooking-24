@@ -11,7 +11,7 @@ function generateCard (offer,author){
   cardArticle.classList.add('popup');
 
   const imgWidth = 70;
-  const imgHeigth =70;
+  const imgHeigth = 70;
   const cardImg = document.createElement('img');
   cardImg.classList.add('popup__avatar');
   cardImg.setAttribute('src',author.avatar);
