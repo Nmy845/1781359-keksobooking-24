@@ -1,6 +1,7 @@
 import { MIN_LAT, MAX_LAT, MIN_LNG, MAX_LNG, OFFER_TITLE, OFFER_TYPE, OFFER_TIMES, OFFER_FEATURES, OFFER_DESCRIPTION, OFFER_PHOTOS } from './data.js';
 import { randomInt, randomFloat, shuffle } from './utils.js';
 import { generateCards } from './cards.js';
+import {deactivatePage, activatePage} from './form.js';
 
 function generateObject() {
   let avatarId = randomInt(1, 10);
@@ -34,7 +35,6 @@ function generateObject() {
   };
 }
 
-
 const objects = [];
 
 function arrayObjects() {
@@ -45,9 +45,9 @@ function arrayObjects() {
 
 arrayObjects();
 
-
 const generatedCards = generateCards(objects);
 
 document.getElementById('map-canvas').appendChild(generatedCards[0]);
 
-
+activatePage();
+deactivatePage();
