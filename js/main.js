@@ -2,6 +2,7 @@ import { MIN_LAT, MAX_LAT, MIN_LNG, MAX_LNG, OFFER_TITLE, OFFER_TYPE, OFFER_TIME
 import { randomInt, randomFloat, shuffle } from './utils.js';
 import { generateCards } from './cards.js';
 import {deactivatePage, activatePage} from './form.js';
+import './validation.js';
 
 function generateObject() {
   let avatarId = randomInt(1, 10);
@@ -50,4 +51,4 @@ const generatedCards = generateCards(objects);
 document.getElementById('map-canvas').appendChild(generatedCards[0]);
 
 activatePage();
-deactivatePage();
+
