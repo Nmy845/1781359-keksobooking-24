@@ -5,7 +5,7 @@ function activatePage(){
 
   let fieldSets = formElement.getElementsByTagName('fieldset');
   for (let i=0;i<fieldSets.length;i++) {
-	  fieldSets[i].disabled=false;
+    fieldSets[i].disabled=false;
   }
 
   const elementsMap = document.getElementsByClassName('map__filters');
@@ -14,12 +14,11 @@ function activatePage(){
 
   fieldSets = mapElement.getElementsByTagName('fieldset');
   for (let i=0;i<fieldSets.length;i++) {
-	  fieldSets[i].disabled=false;
+    fieldSets[i].disabled=false;
   }
 
   fieldSets = mapElement.getElementsByTagName('select');
-  for (let i=0;i<fieldSets.length;i++) {
-	  fieldSets[i].disabled=false;
+  for (let i=0;i<fieldSets.length;i++) {  fieldSets[i].disabled=false;
   }
 }
 
