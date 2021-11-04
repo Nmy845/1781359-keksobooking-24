@@ -2,7 +2,7 @@
 
 function hideEmpty (field,element){
   if (field ==='' || field === undefined) {
-	  element.style.display = 'none';
+    element.style.display = 'none';
   }
 }
 

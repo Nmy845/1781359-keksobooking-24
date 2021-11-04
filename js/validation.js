@@ -79,9 +79,9 @@ formRooms.addEventListener('change', (event) => {
       palace.disabled=true;
       break;
     case '100':
-	 	oneRoom.disabled=true;
-	 	twoRoom.disabled=true;
-	 	threeRoom.disabled=true;
+      oneRoom.disabled=true;
+      twoRoom.disabled=true;
+      threeRoom.disabled=true;
       break;
   }
 });
