@@ -1,5 +1,3 @@
-
-
 function hideEmpty (field,element){
   if (field ==='' || field === undefined) {
     element.style.display = 'none';
@@ -108,13 +106,4 @@ function generateCard (offer,author){
   return cardArticle;
 }
 
-function generateCards(objects){
-  const generatedCards = [];
-  objects.forEach((object) => {
-    const card = generateCard(object.offer,object.author);
-    generatedCards.push(card);
-  });
-  return generatedCards;
-}
-
-export{generateCards};
+export{generateCard};

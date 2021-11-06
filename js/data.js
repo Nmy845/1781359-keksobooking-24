@@ -4,12 +4,11 @@ const MAX_LAT = 35.70000;
 const MIN_LNG = 139.70000;
 const MAX_LNG = 139.80000;
 
-const OFFER_TITLE = ['Купить Квартиру', 'Купить комнату', 'Купить и сразу продать', 'Продам гараж'];
+const OFFER_TITLE = ['Подпольное казино', 'Живу в пещере', 'Купить и сразу продать', 'Продам гараж', 'Тут был Петя', 'Буткемп недорого'];
 
 const OFFER_TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 
 const OFFER_TIMES = ['12:00', '13:00', '14:00'];
-
 
 const OFFER_FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 
