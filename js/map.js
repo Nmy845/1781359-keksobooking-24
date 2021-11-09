@@ -1,11 +1,13 @@
 import {activatePage} from './form.js';
 import { generateCard } from './cards.js';
 import { showError } from './utils.js';
+import { filterFormData, saveData } from './filter.js';
 
 const mapZoom = 11;
 const DEFAULT_LAT = 35.73852;
 const DEFAULT_LNG = 139.78927;
 const location = document.querySelector('#address');
+let markers = [];
 
 const map = L.map('map-canvas')
   .on('load', () => {
@@ -72,25 +74,40 @@ fetch('https://24.javascript.pages.academy/keksobooking/data')
     showError('Ошибочка вышла');
     throw new Error('Ошибка загрузки сервера!');
   })
+  .then ((data) => {
+    saveData(data);
+    return filterFormData();
+  })
   .then((data) => {
-    for (let i=0;i<data.length;i++){
-      const card = generateCard(data[i].offer,data[i].author);
-      const marker = L.marker(
-        {
-          lat: data[i].location.lat,
-          lng: data[i].location.lng,
-        },
-        {
-          draggable: false,
-          icon: classicPinIcon,
-        },
-      );
-      marker.addTo(map)
-        .bindPopup(card);
-    }
+    drawMarkers(data);
   })
   .catch((err) => {
     throw new Error(err);
   });
 
+export function drawMarkers (data){
+  clearMarkers();
+  for (let i=0;i<data.length;i++){
+    const card = generateCard(data[i].offer,data[i].author);
+    const marker = L.marker(
+      {
+        lat: data[i].location.lat,
+        lng: data[i].location.lng,
+      },
+      {
+        draggable: false,
+        icon: classicPinIcon,
+      },
+    );
+    const newMarker = marker.bindPopup(card);
+    markers.push(newMarker);
+    map.addControl(newMarker);
+  }
+}
 
+function clearMarkers() {
+  for (let i = 0; i < markers.length ; i++){
+  map.removeControl(markers[i]);
+  }
+  markers = [];
+}
