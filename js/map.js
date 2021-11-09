@@ -1,15 +1,27 @@
 import {activatePage} from './form.js';
-import { generateObject } from './utils.js';
 import { generateCard } from './cards.js';
+import { showError } from './utils.js';
+
+const mapZoom = 11;
+const DEFAULT_LAT = 35.73852;
+const DEFAULT_LNG = 139.78927;
+const location = document.querySelector('#address');
 
 const map = L.map('map-canvas')
   .on('load', () => {
     activatePage();
   })
-  .setView([35.738528254599984, 139.78927363327273], 10);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
+  .setView({
+    lat: DEFAULT_LAT,
+    lng: DEFAULT_LNG,
+  }, mapZoom);
+
+L.tileLayer(
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  })
+  .addTo(map);
 
 const mainPinIcon = L.icon({
   iconUrl: '../img/main-pin.svg',
@@ -18,8 +30,8 @@ const mainPinIcon = L.icon({
 });
 const mainPinMarker = L.marker(
   {
-    lat: 35.73852,
-    lng: 139.78927,
+    lat: DEFAULT_LAT,
+    lng: DEFAULT_LNG,
   },
   {
     draggable: true,
@@ -30,8 +42,7 @@ const mainPinMarker = L.marker(
 mainPinMarker.addTo(map);
 mainPinMarker.on('moveend', (evt) => {
   const adress = evt.target.getLatLng();
-  const adressField = document.querySelector('#address');
-  adressField.value = `${adress.lng}, ${adress.lat}`;
+  location.value = `${adress.lng}, ${adress.lat}`;
 });
 
 const classicPinIcon = L.icon({
@@ -40,21 +51,46 @@ const classicPinIcon = L.icon({
   iconAnchor: [20, 40],
 });
 
-for (let i=0;i<10;i++){
-  const object = generateObject();
-  const card = generateCard(object.offer,object.author);
-  const marker = L.marker(
-    {
-      lat: object.location.lat,
-      lng: object.location.lng,
-    },
-    {
-      draggable: false,
-      icon: classicPinIcon,
-    },
-  );
-  marker.addTo(map)
-    .bindPopup(card);
-}
+export const mapReset = () => {
+  mainPinMarker.setLatLng({
+    lat: DEFAULT_LAT,
+    lng: DEFAULT_LNG,
+  });
+  map.setView({
+    lat: DEFAULT_LAT,
+    lng: DEFAULT_LNG,
+  }, mapZoom);
+  location.value = `${DEFAULT_LNG}, ${DEFAULT_LAT}`;
+  map.closePopup();
+};
+
+fetch('https://24.javascript.pages.academy/keksobooking/data')
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    showError('Ошибочка вышла');
+    throw new Error('Ошибка загрузки сервера!');
+  })
+  .then((data) => {
+    for (let i=0;i<data.length;i++){
+      const card = generateCard(data[i].offer,data[i].author);
+      const marker = L.marker(
+        {
+          lat: data[i].location.lat,
+          lng: data[i].location.lng,
+        },
+        {
+          draggable: false,
+          icon: classicPinIcon,
+        },
+      );
+      marker.addTo(map)
+        .bindPopup(card);
+    }
+  })
+  .catch((err) => {
+    throw new Error(err);
+  });
 
 

@@ -1,4 +1,7 @@
 import { MIN_LAT, MAX_LAT, MIN_LNG, MAX_LNG, OFFER_TITLE, OFFER_TYPE, OFFER_TIMES, OFFER_FEATURES, OFFER_DESCRIPTION, OFFER_PHOTOS } from './data.js';
+
+const ALERT_TIME = 3000;
+
 function randomInt(from, to) {
   if (from < 0 || to < 0) {
     return 'Параметры диапазона должны быть неотрицательными';
@@ -63,4 +66,28 @@ function generateObject() {
   };
 }
 
-export { randomInt, randomFloat, shuffle , generateObject };
+function showError(text) {
+  const errorContainer = document.createElement('div');
+  const errorMessage = document.createElement('p');
+  errorContainer.appendChild(errorMessage);
+  errorMessage.textContent = text;
+  errorContainer.style.position = 'fixed';
+  errorContainer.style.width = '100%';
+  errorContainer.style.height = '40px';
+  errorContainer.style.backgroundColor = '#FFCDD2';
+  errorContainer.style.color = '#BF360C';
+  errorContainer.style.textAlign = 'center';
+  errorContainer.style.left = '0';
+  errorContainer.style.top = '0';
+  errorContainer.style.zIndex = '1000';
+  errorMessage.style.margin = '10px';
+
+  document.body.appendChild(errorContainer);
+
+  setTimeout(() => {
+    errorContainer.remove();
+  },
+  ALERT_TIME);
+}
+
+export { randomInt, randomFloat, shuffle , generateObject , showError };
