@@ -68,29 +68,32 @@ function generateCard (offer,author){
   cardFeatures.classList.add('popup_features');
   cardArticle.appendChild(cardFeatures);
 
-  for (let i=0;i<offer.features.length;i++){
-    const cardFeature = document.createElement('li');
-    cardFeature.classList.add('popup__feature',`popup__feature--${offer.features[i]}`);
-    cardFeatures.appendChild(cardFeature);
+  if (offer.features !== undefined){
+    for (let i=0;i<offer.features.length;i++){
+      const cardFeature = document.createElement('li');
+      cardFeature.classList.add('popup__feature',`popup__feature--${offer.features[i]}`);
+      cardFeatures.appendChild(cardFeature);
+    }
   }
-
   const cardDescription = document.createElement('p');
   cardDescription.classList.add('popup_description');
   cardDescription.textContent = offer.description;
   cardArticle.appendChild(cardDescription);
 
-  const cardWidth = 45;
-  const cardHeight = 40;
   const cardPhotos = document.createElement('img');
   cardPhotos.classList.add('popup_photos');
-  for(let i=0;i < offer.photos.length;i++){
-    cardPhotos.setAttribute('src',offer.photos[i]);
-    cardPhotos.setAttribute('width',cardWidth);
-    cardPhotos.setAttribute('height',cardHeight);
-    cardPhotos.setAttribute('alt','Фотография жилья');
-    cardDescription.appendChild(cardPhotos);
-  }
 
+  if(offer.photos !== undefined){
+    const cardWidth = 45;
+    const cardHeight = 40;
+    for(let i=0;i < offer.photos.length;i++){
+      cardPhotos.setAttribute('src',offer.photos[i]);
+      cardPhotos.setAttribute('width',cardWidth);
+      cardPhotos.setAttribute('height',cardHeight);
+      cardPhotos.setAttribute('alt','Фотография жилья');
+      cardDescription.appendChild(cardPhotos);
+    }
+  }
   hideEmpty(offer.title,cardTitle);
   hideEmpty(offer.address,cardAdress);
   hideEmpty(offer.price,cardPrice);
