@@ -69,29 +69,29 @@ export function filterFormData(){
       }
     })
     .filter((dataItem) => {
-      if (filterData.guests == 'any') {
+      if (filterData.guests.toString() === 'any') {
         return true;
       }
       else {
-        return dataItem.offer.guests <= filterData.guests;
+        return Number(dataItem.offer.guests) <= Number(filterData.guests);
       }
     })
     .filter((dataItem) => {
-      if (filterData.rooms == 'any') {
+      if (filterData.rooms.toString() === 'any') {
         return true;
       }
       else {
-        return dataItem.offer.rooms == filterData.rooms;
+        return dataItem.offer.rooms.toString() === filterData.rooms.toString();
       }
     })
     .filter((dataItem) => {
-      if (dataItem.offer.features == undefined && filterData.features.length > 0) {
+      if (dataItem.offer.features === undefined && filterData.features.length > 0) {
         return false;
       }
       let index = 0;
       for (let i = 0; i < filterData.features.length; i++) {
         index = dataItem.offer.features.indexOf(filterData.features[i]);
-        if (index == -1) {
+        if (index === -1) {
           return false;
         }
       }

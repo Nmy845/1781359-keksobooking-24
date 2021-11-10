@@ -107,7 +107,7 @@ export function drawMarkers (data){
 
 function clearMarkers() {
   for (let i = 0; i < markers.length ; i++){
-  map.removeControl(markers[i]);
+    map.removeControl(markers[i]);
   }
   markers = [];
 }
