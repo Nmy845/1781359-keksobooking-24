@@ -37,7 +37,7 @@ guestsFilter.addEventListener('change', (event) => {
 });
 featuresFilter.addEventListener('change', (event) => {
   const index = filterData.features.indexOf(event.target.value);
-  if (index != -1){
+  if (index !== -1){
     filterData.features.splice(index, 1);
   }
   else {
@@ -49,11 +49,11 @@ featuresFilter.addEventListener('change', (event) => {
 export function filterFormData(){
   const newData = savedData
     .filter((dataItem) => {
-      if (filterData.type == 'any') {
+      if (filterData.type === 'any') {
         return true;
       }
       else {
-        return dataItem.offer.type == filterData.type;
+        return dataItem.offer.type === filterData.type;
       }
     })
     .filter((dataItem) => {
