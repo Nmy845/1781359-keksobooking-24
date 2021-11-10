@@ -19,33 +19,6 @@ const filterData = {
   features: [],
 };
 
-typeFilter.addEventListener('change', (event) => {
-  filterData.type = event.target.value;
-  filterFormData();
-});
-priceFilter.addEventListener('change', (event) => {
-  filterData.price = event.target.value;
-  filterFormData();
-});
-roomsFilter.addEventListener('change', (event) => {
-  filterData.rooms = event.target.value;
-  filterFormData();
-});
-guestsFilter.addEventListener('change', (event) => {
-  filterData.guests = event.target.value;
-  filterFormData();
-});
-featuresFilter.addEventListener('change', (event) => {
-  const index = filterData.features.indexOf(event.target.value);
-  if (index !== -1){
-    filterData.features.splice(index, 1);
-  }
-  else {
-    filterData.features.push(event.target.value);
-  }
-  filterFormData();
-});
-
 export function filterFormData(){
   const newData = savedData
     .filter((dataItem) => {
@@ -89,8 +62,8 @@ export function filterFormData(){
         return false;
       }
       let index = 0;
-      for (let i = 0; i < filterData.features.length; i++) {
-        index = dataItem.offer.features.indexOf(filterData.features[i]);
+      for (let iIndex = 0; iIndex < filterData.features.length; iIndex++) {
+        index = dataItem.offer.features.indexOf(filterData.features[iIndex]);
         if (index === -1) {
           return false;
         }
@@ -101,6 +74,33 @@ export function filterFormData(){
   debounce(() => drawMarkers(newData))();
   return newData;
 }
+
+typeFilter.addEventListener('change', (event) => {
+  filterData.type = event.target.value;
+  filterFormData();
+});
+priceFilter.addEventListener('change', (event) => {
+  filterData.price = event.target.value;
+  filterFormData();
+});
+roomsFilter.addEventListener('change', (event) => {
+  filterData.rooms = event.target.value;
+  filterFormData();
+});
+guestsFilter.addEventListener('change', (event) => {
+  filterData.guests = event.target.value;
+  filterFormData();
+});
+featuresFilter.addEventListener('change', (event) => {
+  const index = filterData.features.indexOf(event.target.value);
+  if (index !== -1){
+    filterData.features.splice(index, 1);
+  }
+  else {
+    filterData.features.push(event.target.value);
+  }
+  filterFormData();
+});
 
 export function saveData (data){
   savedData = data ;

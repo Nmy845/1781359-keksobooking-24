@@ -3,14 +3,20 @@ import {mapReset} from './map.js';
 const form = document.querySelector('.ad-form');
 const filterForm = document.querySelector('.map__filters');
 
+function resetForm(){
+  form.reset();
+  filterForm.reset();
+  mapReset();
+}
+
 function activatePage(){
   const elements = document.getElementsByClassName('ad-form');
   const formElement = elements[0];
   formElement.classList.remove('ad-form--disabled');
 
   let fieldSets = formElement.getElementsByTagName('fieldset');
-  for (let i=0;i<fieldSets.length;i++) {
-    fieldSets[i].disabled=false;
+  for (let iIndex=0;iIndex<fieldSets.length;iIndex++) {
+    fieldSets[iIndex].disabled=false;
   }
 
   const elementsMap = document.getElementsByClassName('map__filters');
@@ -18,13 +24,13 @@ function activatePage(){
   mapElement.classList.remove('map__filters--disabled');
 
   fieldSets = mapElement.getElementsByTagName('fieldset');
-  for (let i=0;i<fieldSets.length;i++) {
-    fieldSets[i].disabled=false;
+  for (let iIndex=0;iIndex<fieldSets.length;iIndex++) {
+    fieldSets[iIndex].disabled=false;
   }
 
   fieldSets = mapElement.getElementsByTagName('select');
-  for (let i=0;i<fieldSets.length;i++) {
-    fieldSets[i].disabled=false;
+  for (let iIndex=0;iIndex<fieldSets.length;iIndex++) {
+    fieldSets[iIndex].disabled=false;
   }
 }
 
@@ -34,8 +40,8 @@ function deactivatePage(){
   formElement.classList.add('ad-form--disabled');
 
   let fieldSets = formElement.getElementsByTagName('fieldset');
-  for (let i=0;i<fieldSets.length;i++) {
-    fieldSets[i].disabled=true;
+  for (let iIndex=0;iIndex<fieldSets.length;iIndex++) {
+    fieldSets[iIndex].disabled=true;
   }
 
   const elementsMap = document.getElementsByClassName('map__filters');
@@ -43,13 +49,13 @@ function deactivatePage(){
   mapElement.classList.add('map__filters--disabled');
 
   fieldSets = mapElement.getElementsByTagName('fieldset');
-  for (let i=0;i<fieldSets.length;i++) {
-    fieldSets[i].disabled=true;
+  for (let iIndex=0;iIndex<fieldSets.length;iIndex++) {
+    fieldSets[iIndex].disabled=true;
   }
 
   fieldSets = mapElement.getElementsByTagName('select');
-  for (let i=0;i<fieldSets.length;i++) {
-    fieldSets[i].disabled=true;
+  for (let iIndex=0;iIndex<fieldSets.length;iIndex++) {
+    fieldSets[iIndex].disabled=true;
   }
 }
 
@@ -109,11 +115,5 @@ window.addEventListener('click',() => {
     newSuccess.remove();
   }
 });
-
-function resetForm(){
-  form.reset();
-  filterForm.reset();
-  mapReset();
-}
 
 export {deactivatePage , activatePage , formSubmit};

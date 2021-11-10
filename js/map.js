@@ -66,6 +66,33 @@ export const mapReset = () => {
   map.closePopup();
 };
 
+export function clearMarkers() {
+  for (let iIndex = 0; iIndex < markers.length ; iIndex++){
+    map.removeControl(markers[iIndex]);
+  }
+  markers = [];
+}
+
+export function drawMarkers (data){
+  clearMarkers();
+  for (let iIndex=0;iIndex<data.length;iIndex++){
+    const card = generateCard(data[iIndex].offer,data[iIndex].author);
+    const marker = L.marker(
+      {
+        lat: data[iIndex].location.lat,
+        lng: data[iIndex].location.lng,
+      },
+      {
+        draggable: false,
+        icon: classicPinIcon,
+      },
+    );
+    const newMarker = marker.bindPopup(card);
+    markers.push(newMarker);
+    map.addControl(newMarker);
+  }
+}
+
 fetch('https://24.javascript.pages.academy/keksobooking/data')
   .then((response) => {
     if (response.ok) {
@@ -84,30 +111,3 @@ fetch('https://24.javascript.pages.academy/keksobooking/data')
   .catch((err) => {
     throw new Error(err);
   });
-
-export function drawMarkers (data){
-  clearMarkers();
-  for (let i=0;i<data.length;i++){
-    const card = generateCard(data[i].offer,data[i].author);
-    const marker = L.marker(
-      {
-        lat: data[i].location.lat,
-        lng: data[i].location.lng,
-      },
-      {
-        draggable: false,
-        icon: classicPinIcon,
-      },
-    );
-    const newMarker = marker.bindPopup(card);
-    markers.push(newMarker);
-    map.addControl(newMarker);
-  }
-}
-
-function clearMarkers() {
-  for (let i = 0; i < markers.length ; i++){
-    map.removeControl(markers[i]);
-  }
-  markers = [];
-}

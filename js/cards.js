@@ -69,9 +69,9 @@ function generateCard (offer,author){
   cardArticle.appendChild(cardFeatures);
 
   if (offer.features !== undefined){
-    for (let i=0;i<offer.features.length;i++){
+    for (let iIndex=0;iIndex<offer.features.length;iIndex++){
       const cardFeature = document.createElement('li');
-      cardFeature.classList.add('popup__feature',`popup__feature--${offer.features[i]}`);
+      cardFeature.classList.add('popup__feature',`popup__feature--${offer.features[iIndex]}`);
       cardFeatures.appendChild(cardFeature);
     }
   }
@@ -86,8 +86,8 @@ function generateCard (offer,author){
   if(offer.photos !== undefined){
     const cardWidth = 45;
     const cardHeight = 40;
-    for(let i=0;i < offer.photos.length;i++){
-      cardPhotos.setAttribute('src',offer.photos[i]);
+    for(let iIndex=0;iIndex < offer.photos.length;iIndex++){
+      cardPhotos.setAttribute('src',offer.photos[iIndex]);
       cardPhotos.setAttribute('width',cardWidth);
       cardPhotos.setAttribute('height',cardHeight);
       cardPhotos.setAttribute('alt','Фотография жилья');

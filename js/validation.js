@@ -58,12 +58,12 @@ function roomValidation () {
   twoRoom.disabled=true;
   palace.disabled=true;
 }
-roomValidation(); //фикс того,что до обработки события даёт выбрать любое количество мест. Можно сделать через поиск по Selected ,а selected по умолчанию 1 комната.
+roomValidation();
 
 formRooms.addEventListener('change', (event) => {
   const options = formCapacity.querySelectorAll('option');
-  for (let i=0;i<options.length;i++){
-    options[i].disabled=false;
+  for (let iIndex=0;iIndex<options.length;iIndex++){
+    options[iIndex].disabled=false;
   }
   switch(event.target.value) {
     case '3':
