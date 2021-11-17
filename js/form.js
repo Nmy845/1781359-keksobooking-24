@@ -59,7 +59,6 @@ function deactivatePage(){
   }
 }
 
-
 function formSubmit (){
   const body = document.querySelector('body');
   const success = document.querySelector('#success').content.querySelector('.success');
@@ -84,7 +83,7 @@ function formSubmit (){
   });
 }
 
-window.addEventListener('keydown', (evt) => {
+window.onkeydown = (evt) => {
   const newSuccess = document.querySelector('body .success');
   const newError = document.querySelector('body .error');
   if (newError !== null){
@@ -101,9 +100,9 @@ window.addEventListener('keydown', (evt) => {
       newSuccess.remove();
     }
   }
+};
 
-});
-window.addEventListener('click',() => {
+window.onclick = () => {
   const newSuccess = document.querySelector('body .success');
   const newError = document.querySelector('body .error');
   if (newError !== null){
@@ -114,6 +113,6 @@ window.addEventListener('click',() => {
     resetForm();
     newSuccess.remove();
   }
-});
+};
 
 export {deactivatePage , activatePage , formSubmit};

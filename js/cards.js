@@ -1,3 +1,8 @@
+const CARD_WIDTH = '45';
+const CARD_HEIGHT = '40';
+const IMG_WIDTH = '70';
+const IMG_HEIGHT = '70';
+
 function hideEmpty (field,element){
   if (field ==='' || field === undefined) {
     element.style.display = 'none';
@@ -8,13 +13,11 @@ function generateCard (offer,author){
   const cardArticle = document.createElement('article');
   cardArticle.classList.add('popup');
 
-  const imgWidth = 70;
-  const imgHeigth = 70;
   const cardImg = document.createElement('img');
   cardImg.classList.add('popup__avatar');
   cardImg.setAttribute('src',author.avatar);
-  cardImg.setAttribute('width',imgWidth);
-  cardImg.setAttribute('heigth',imgHeigth);
+  cardImg.setAttribute('width',IMG_WIDTH);
+  cardImg.setAttribute('heigth',IMG_HEIGHT);
   cardImg.setAttribute('alt','Аватар пользователя');
   cardArticle.appendChild(cardImg);
 
@@ -84,12 +87,10 @@ function generateCard (offer,author){
   cardPhotos.classList.add('popup_photos');
 
   if(offer.photos !== undefined){
-    const cardWidth = 45;
-    const cardHeight = 40;
     for(let iIndex=0;iIndex < offer.photos.length;iIndex++){
       cardPhotos.setAttribute('src',offer.photos[iIndex]);
-      cardPhotos.setAttribute('width',cardWidth);
-      cardPhotos.setAttribute('height',cardHeight);
+      cardPhotos.setAttribute('width',CARD_WIDTH);
+      cardPhotos.setAttribute('height',CARD_HEIGHT);
       cardPhotos.setAttribute('alt','Фотография жилья');
       cardDescription.appendChild(cardPhotos);
     }

@@ -2,6 +2,8 @@ import { debounce } from './utils/debounce.js';
 import { drawMarkers } from './map.js';
 
 const MAX_MARKER_COUNT = 10;
+const LOW_PRICE = 10000;
+const HIGH_PRICE = 50000;
 
 let savedData = [];
 const mapFilters = document.querySelector('.map__filters');
@@ -32,11 +34,11 @@ export function filterFormData(){
     .filter((dataItem) => {
       switch(filterData.price){
         case 'low' :
-          return dataItem.offer.price < 10000;
+          return dataItem.offer.price < LOW_PRICE;
         case 'middle':
-          return dataItem.offer.price >= 10000 && dataItem.offer.price <= 50000;
+          return dataItem.offer.price >= LOW_PRICE && dataItem.offer.price <= HIGH_PRICE;
         case 'high':
-          return dataItem.offer.price > 50000;
+          return dataItem.offer.price > HIGH_PRICE;
         default:
           return true;
       }

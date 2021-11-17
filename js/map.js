@@ -9,6 +9,8 @@ const DEFAULT_LNG = 139.78927;
 const location = document.querySelector('#address');
 let markers = [];
 
+location.value = `${DEFAULT_LAT}, ${DEFAULT_LNG}`;
+
 const map = L.map('map-canvas')
   .on('load', () => {
     activatePage();
@@ -44,7 +46,7 @@ const mainPinMarker = L.marker(
 mainPinMarker.addTo(map);
 mainPinMarker.on('moveend', (evt) => {
   const adress = evt.target.getLatLng();
-  location.value = `${adress.lng}, ${adress.lat}`;
+  location.value = `${adress.lng.toFixed(5)}, ${adress.lat.toFixed(5)}`;
 });
 
 const classicPinIcon = L.icon({
